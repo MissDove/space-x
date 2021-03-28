@@ -5,15 +5,8 @@ export const routes = {
         sitemap: false,
     },
     spacecrafts: {
-        rockets: {
-            path: "/spacecrafts/rockets",
-            title: "Rockets",
-            sitemap: false,
-        },
-        dragons: {
-            path: "/spacecrafts/dragons",
-            title: "Dragons",
-            sitemap: false,
-        },
+        path: "/spacecrafts",
+        title: "Spacecrafts",
+        sitemap: false,
     },
 };
