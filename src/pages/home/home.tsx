@@ -4,6 +4,7 @@ import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router
 import { NavbarRouter } from "components/navbar";
 import { Dragons } from "./tabs/dragons";
 import { Rockets } from "./tabs/rockets";
+import { VerticalSpacing } from "components/shared-styles";
 
 export const Home = () => {
     const { url, path } = useRouteMatch();
@@ -67,10 +68,6 @@ export const Home = () => {
         </Wrapper>
     );
 };
-
-const VerticalSpacing = styled.div<{ size: number }>`
-    height: ${({ size }) => size}px;
-`;
 
 const Wrapper = styled.div`
     width: 100%;
@@ -168,7 +165,10 @@ const HomeText = styled.h2`
 `;
 
 const TabContent = styled.div`
+    margin-left: auto;
+    margin-right: auto;
     padding: 24px;
     border: 5px solid ${({ theme }) => theme.primaryYellow};
     border-radius: ${({ theme }) => theme.radius2};
+    background: ${({ theme }) => theme.primaryGreen};
 `;
