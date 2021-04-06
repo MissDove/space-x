@@ -2,8 +2,8 @@ export const Theme = {
     fontFamily: "Helvetica, sans-serif",
 
     // colours
-    textDark: "#392D40",
-    textLight: "#B9AEAC",
+    darkGrey: "#392D40",
+    lightGrey: "#B9AEAC",
 
     primaryRed: "#E75353",
 
@@ -11,7 +11,7 @@ export const Theme = {
 
     primaryBlue: "#5A9DB4",
 
-    backgroundColor: "#FDFFF6",
+    primaryBackground: "#FDFFF6",
 
     // border radius
     radius1: "4px",

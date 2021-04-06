@@ -1,18 +1,54 @@
 import styled from "styled-components";
+import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
+
+import { NavbarRouter } from "components/navbar";
 
 export const Home = () => {
+    const { url, path } = useRouteMatch();
+
+    const { pathname } = useLocation();
+
     return (
         <Wrapper>
-            <Navbar>
-                <NavItemsWrapper>
-                    <Logo>SpaceX</Logo>
-                    <NavItem>Rockets</NavItem>
-                    <NavItem>Dragons</NavItem>
-                </NavItemsWrapper>
-                <p>Placeholder</p>
-            </Navbar>
+            <NavbarRouter logo={{ url }} />
+
             <Content>
-                <ContentWrapper></ContentWrapper>
+                <PageContentWrapper>
+                    <div>
+                        {(pathname === "/rockets" || pathname === "/dragons") && (
+                            <NavLink to={url} exact={true}>
+                                Go Back to Home Page
+                            </NavLink>
+                        )}
+
+                        <div>
+                            <NavLink to={`${url}rockets`} exact={true}>
+                                Rockets
+                            </NavLink>
+                            <NavLink to={`${url}dragons`} exact={true}>
+                                Dragons
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div>
+                        <Switch>
+                            {pathname === "/" && (
+                                <Route path={path}>
+                                    <div>
+                                        <p>Welcome to Rockets and Dragons page!</p>
+                                        <p>Please choose ROCKETS or DRAGONS to continue</p>
+                                    </div>
+                                </Route>
+                            )}
+                            <Route path={`${path}rockets`}>
+                                <div>Rockets</div>
+                            </Route>
+                            <Route path={`${path}dragons`}>
+                                <div>Dragons</div>
+                            </Route>
+                        </Switch>
+                    </div>
+                </PageContentWrapper>
             </Content>
         </Wrapper>
     );
@@ -23,45 +59,15 @@ const Wrapper = styled.div`
     height: 100vh;
 `;
 
-const Navbar = styled.nav`
-    background: ${({ theme }) => theme.backgroundColor};
-    position: sticky;
-    padding: 24px 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-const Logo = styled.p`
-    font-size: 48px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.textDark};
-    margin-right: 64px;
-`;
-
-const NavItemsWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-const NavItem = styled.p`
-    margin-right: 24px;
-
-    :last-child {
-        margin-right: 0;
-    }
-`;
-
 const Content = styled.div`
-    background: ${({ theme }) => theme.textDark};
+    background: ${({ theme }) => theme.darkGrey};
     width: 100%;
     height: 100vh;
     padding: 64px;
 `;
 
-const ContentWrapper = styled.div`
-    background: ${({ theme }) => theme.backgroundColor};
+const PageContentWrapper = styled.div`
+    background: ${({ theme }) => theme.primaryBackground};
     width: 100%;
     height: 100%;
     padding: 24px;
