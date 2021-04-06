@@ -14,22 +14,28 @@ export const Home = () => {
 
             <Content>
                 <PageContentWrapper>
-                    <div>
-                        {(pathname === "/rockets" || pathname === "/dragons") && (
-                            <NavLink to={url} exact={true}>
-                                Go Back to Home Page
-                            </NavLink>
-                        )}
-
+                    <LinksWrapper>
                         <div>
+                            {(pathname === "/rockets" || pathname === "/dragons") && (
+                                <HomeButton>
+                                    <StyledNavLink to={url} exact={true}>
+                                        <Text>Return to the base</Text>
+                                    </StyledNavLink>
+                                </HomeButton>
+                            )}
+                        </div>
+
+                        <VerticalSpacing size={32} />
+
+                        <ButtonLinksWrapper>
                             <NavLink to={`${url}rockets`} exact={true}>
                                 Rockets
                             </NavLink>
                             <NavLink to={`${url}dragons`} exact={true}>
                                 Dragons
                             </NavLink>
-                        </div>
-                    </div>
+                        </ButtonLinksWrapper>
+                    </LinksWrapper>
                     <div>
                         <Switch>
                             {pathname === "/" && (
@@ -54,6 +60,10 @@ export const Home = () => {
     );
 };
 
+const VerticalSpacing = styled.div<{ size: number }>`
+    height: ${({ size }) => size}px;
+`;
+
 const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
@@ -72,4 +82,36 @@ const PageContentWrapper = styled.div`
     height: 100%;
     padding: 24px;
     border-radius: ${({ theme }) => theme.radius2};
+`;
+
+const LinksWrapper = styled.div`
+    max-width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+`;
+
+const HomeButton = styled.button`
+    display: block;
+    margin: 0;
+    border: none;
+    background: ${({ theme }) => theme.primaryGreen};
+    padding: 16px 24px;
+    border-radius: 50%;
+    transform: rotate(-12deg);
+`;
+
+const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+    color: ${({ theme }) => theme.darkGrey};
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const Text = styled.p`
+    transform: rotate(12deg);
+`;
+
+const ButtonLinksWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;
