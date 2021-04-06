@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 
 import { NavbarRouter } from "components/navbar";
+import { Dragons } from "./tabs/dragons";
+import { Rockets } from "./tabs/rockets";
+import { VerticalSpacing } from "components/shared-styles";
 
 export const Home = () => {
     const { url, path } = useRouteMatch();
@@ -14,40 +17,52 @@ export const Home = () => {
 
             <Content>
                 <PageContentWrapper>
-                    <div>
-                        {(pathname === "/rockets" || pathname === "/dragons") && (
-                            <NavLink to={url} exact={true}>
-                                Go Back to Home Page
-                            </NavLink>
-                        )}
-
+                    <LinksWrapper>
                         <div>
-                            <NavLink to={`${url}rockets`} exact={true}>
-                                Rockets
-                            </NavLink>
-                            <NavLink to={`${url}dragons`} exact={true}>
-                                Dragons
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div>
-                        <Switch>
-                            {pathname === "/" && (
-                                <Route path={path}>
-                                    <div>
-                                        <p>Welcome to Rockets and Dragons page!</p>
-                                        <p>Please choose ROCKETS or DRAGONS to continue</p>
-                                    </div>
-                                </Route>
+                            {(pathname === "/rockets" || pathname === "/dragons") && (
+                                <HomeButton>
+                                    <StyledNavLink to={url} exact={true}>
+                                        <Text>Return to SpaceX</Text>
+                                    </StyledNavLink>
+                                </HomeButton>
                             )}
-                            <Route path={`${path}rockets`}>
-                                <div>Rockets</div>
+                        </div>
+
+                        <VerticalSpacing size={32} />
+
+                        <ButtonLinksWrapper>
+                            <ButtonNavLink to={`${url}rockets`} exact={true} activeClassName="active">
+                                <LinkText>Rockets</LinkText>
+                            </ButtonNavLink>
+
+                            <ButtonNavLink to={`${url}dragons`} exact={true}>
+                                <LinkText>Dragons</LinkText>
+                            </ButtonNavLink>
+                        </ButtonLinksWrapper>
+                    </LinksWrapper>
+
+                    <VerticalSpacing size={32} />
+
+                    <Switch>
+                        {pathname === "/" && (
+                            <Route path={path}>
+                                <HomeContent>
+                                    <HomeText>Welcome</HomeText>
+                                    <HomeText>Choose Rockets or Dragons to continue</HomeText>
+                                </HomeContent>
                             </Route>
-                            <Route path={`${path}dragons`}>
-                                <div>Dragons</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                        )}
+                        <Route path={`${path}rockets`}>
+                            <TabContent>
+                                <Rockets />
+                            </TabContent>
+                        </Route>
+                        <Route path={`${path}dragons`}>
+                            <TabContent>
+                                <Dragons />
+                            </TabContent>
+                        </Route>
+                    </Switch>
                 </PageContentWrapper>
             </Content>
         </Wrapper>
@@ -72,4 +87,88 @@ const PageContentWrapper = styled.div`
     height: 100%;
     padding: 24px;
     border-radius: ${({ theme }) => theme.radius2};
+`;
+
+const LinksWrapper = styled.div`
+    max-width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+`;
+
+const HomeButton = styled.button`
+    display: block;
+    margin: 0;
+    border: none;
+    background: ${({ theme }) => theme.primaryGreen};
+    padding: 16px 24px;
+    border-radius: 50%;
+    transform: rotate(-12deg);
+`;
+
+const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+    color: ${({ theme }) => theme.darkGrey};
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const Text = styled.p`
+    transform: rotate(12deg);
+`;
+
+const LinkText = styled.p`
+    transform: rotate(12deg);
+    margin-left: 30px;
+`;
+
+const ButtonLinksWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const ButtonNavLink = styled(NavLink)`
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 5px solid ${({ theme }) => theme.primaryYellow};
+    background: transparent;
+    transform: rotate(-12deg);
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    color: ${({ theme }) => theme.darkGrey};
+    margin-right: 100px;
+
+    &.active {
+        cursor: default;
+        background: ${({ theme }) => theme.primaryGreen};
+        font-size: 24px;
+    }
+`;
+
+const HomeContent = styled.div`
+    padding: 32px 0;
+    text-align: center;
+    border: 5px solid ${({ theme }) => theme.primaryGreen};
+    border-radius: ${({ theme }) => theme.radius2};
+`;
+
+const HomeText = styled.h2`
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: ${({ theme }) => theme.darkGrey};
+`;
+
+const TabContent = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+    border: 5px solid ${({ theme }) => theme.primaryYellow};
+    border-radius: ${({ theme }) => theme.radius2};
+    background: ${({ theme }) => theme.primaryGreen};
 `;

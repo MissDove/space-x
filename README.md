@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# About
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://create-react-app.dev/) and TypeScript has been added to it.
+
+This project is to provide a brief overview of SpaceX's _rockets_ and _dragons_.
+
+[SpaceX's open API](https://docs.spacexdata.com/) is being used for fetching the data.
+
+If you clone this repository, don't forget to run `yarn` command to install all necessary libraries for running this app.
 
 ## Available Scripts
 
@@ -39,8 +45,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+# UX/UI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The inspiration for UX and theme colours for this app came from this image:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="src/components/media/inspiration-image.png" height="350" alt="Inspiration photo">

@@ -5,13 +5,15 @@ export const Theme = {
     darkGrey: "#392D40",
     lightGrey: "#B9AEAC",
 
-    primaryRed: "#E75353",
-
-    primaryYellow: "#F6D586",
+    primaryBackground: "#FDFFF6",
 
     primaryBlue: "#5A9DB4",
 
-    primaryBackground: "#FDFFF6",
+    primaryGreen: "#B8FCC6",
+
+    primaryRed: "#E75353",
+
+    primaryYellow: "#F6D586",
 
     // border radius
     radius1: "4px",

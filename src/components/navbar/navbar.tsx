@@ -19,7 +19,9 @@ export const NavbarRouter = ({ className, logo }: INavbarProps) => {
             <PageWidth>
                 <Container>
                     <StyledLink data-testid="navbar-router-logo" to={logo.url} title={logo.title} exact={true}>
-                        <Logo>SpaceX</Logo>
+                        <LogoWrapper>
+                            <Logo>SpaceX</Logo>
+                        </LogoWrapper>
                     </StyledLink>
                 </Container>
             </PageWidth>
@@ -41,11 +43,19 @@ const StyledLink = styled(NavLink)`
     text-decoration: none;
 `;
 
+const LogoWrapper = styled.div`
+    background-color: ${({ theme }) => theme.primaryGreen};
+    height: 60px;
+    width: 180px;
+    border-radius: 50%;
+    transform: rotate(-12deg);
+`;
+
 const Logo = styled.p`
     font-size: 48px;
     font-weight: 700;
     color: ${({ theme }) => theme.darkGrey};
-    margin-right: 64px;
+    transform: rotate(12deg);
 `;
 
 // const Menu = styled.ul`
