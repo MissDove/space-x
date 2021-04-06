@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 
 import { NavbarRouter } from "components/navbar";
+import { Dragons } from "./tabs/dragons";
+import { Rockets } from "./tabs/rockets";
 
 export const Home = () => {
     const { url, path } = useRouteMatch();
@@ -19,7 +21,7 @@ export const Home = () => {
                             {(pathname === "/rockets" || pathname === "/dragons") && (
                                 <HomeButton>
                                     <StyledNavLink to={url} exact={true}>
-                                        <Text>Return to the base</Text>
+                                        <Text>Return to SpaceX</Text>
                                     </StyledNavLink>
                                 </HomeButton>
                             )}
@@ -28,32 +30,38 @@ export const Home = () => {
                         <VerticalSpacing size={32} />
 
                         <ButtonLinksWrapper>
-                            <NavLink to={`${url}rockets`} exact={true}>
-                                Rockets
-                            </NavLink>
-                            <NavLink to={`${url}dragons`} exact={true}>
-                                Dragons
-                            </NavLink>
+                            <ButtonNavLink to={`${url}rockets`} exact={true} activeClassName="active">
+                                <LinkText>Rockets</LinkText>
+                            </ButtonNavLink>
+
+                            <ButtonNavLink to={`${url}dragons`} exact={true}>
+                                <LinkText>Dragons</LinkText>
+                            </ButtonNavLink>
                         </ButtonLinksWrapper>
                     </LinksWrapper>
-                    <div>
-                        <Switch>
-                            {pathname === "/" && (
-                                <Route path={path}>
-                                    <div>
-                                        <p>Welcome to Rockets and Dragons page!</p>
-                                        <p>Please choose ROCKETS or DRAGONS to continue</p>
-                                    </div>
-                                </Route>
-                            )}
-                            <Route path={`${path}rockets`}>
-                                <div>Rockets</div>
+
+                    <VerticalSpacing size={32} />
+
+                    <Switch>
+                        {pathname === "/" && (
+                            <Route path={path}>
+                                <HomeContent>
+                                    <HomeText>Welcome</HomeText>
+                                    <HomeText>Choose Rockets or Dragons to continue</HomeText>
+                                </HomeContent>
                             </Route>
-                            <Route path={`${path}dragons`}>
-                                <div>Dragons</div>
-                            </Route>
-                        </Switch>
-                    </div>
+                        )}
+                        <Route path={`${path}rockets`}>
+                            <TabContent>
+                                <Rockets />
+                            </TabContent>
+                        </Route>
+                        <Route path={`${path}dragons`}>
+                            <TabContent>
+                                <Dragons />
+                            </TabContent>
+                        </Route>
+                    </Switch>
                 </PageContentWrapper>
             </Content>
         </Wrapper>
@@ -111,7 +119,56 @@ const Text = styled.p`
     transform: rotate(12deg);
 `;
 
+const LinkText = styled.p`
+    transform: rotate(12deg);
+    margin-left: 30px;
+`;
+
 const ButtonLinksWrapper = styled.div`
     display: flex;
+    justify-content: center;
+`;
+
+const ButtonNavLink = styled(NavLink)`
+    display: flex;
+    align-items: flex-end;
     justify-content: space-between;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 5px solid ${({ theme }) => theme.primaryYellow};
+    background: transparent;
+    transform: rotate(-12deg);
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    color: ${({ theme }) => theme.darkGrey};
+    margin-right: 100px;
+
+    &.active {
+        cursor: default;
+        background: ${({ theme }) => theme.primaryGreen};
+        font-size: 24px;
+    }
+`;
+
+const HomeContent = styled.div`
+    padding: 32px 0;
+    text-align: center;
+    border: 5px solid ${({ theme }) => theme.primaryGreen};
+    border-radius: ${({ theme }) => theme.radius2};
+`;
+
+const HomeText = styled.h2`
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: ${({ theme }) => theme.darkGrey};
+`;
+
+const TabContent = styled.div`
+    padding: 24px;
+    border: 5px solid ${({ theme }) => theme.primaryYellow};
+    border-radius: ${({ theme }) => theme.radius2};
 `;
