@@ -1,12 +1,7 @@
 export const routes = {
     home: {
-        path: "/",
+        path: "",
         title: "Home",
-        sitemap: false,
-    },
-    spacecrafts: {
-        path: "/spacecrafts",
-        title: "Spacecrafts",
         sitemap: false,
     },
 };
