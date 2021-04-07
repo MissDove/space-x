@@ -19,7 +19,7 @@ export const Home = () => {
                 <PageContentWrapper>
                     <LinksWrapper>
                         <div>
-                            {(pathname === "/rockets" || pathname === "/dragons") && (
+                            {(pathname.includes("rockets") || pathname.includes("dragons")) && (
                                 <HomeButton>
                                     <StyledNavLink to={url} exact={true}>
                                         <Text>Return to SpaceX</Text>
