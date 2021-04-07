@@ -167,8 +167,8 @@ const HomeText = styled.h2`
 const TabContent = styled.div`
     margin-left: auto;
     margin-right: auto;
-    padding: 24px;
+    padding: 32px 32px 0;
     border: 5px solid ${({ theme }) => theme.primaryYellow};
     border-radius: ${({ theme }) => theme.radius2};
-    background: ${({ theme }) => theme.primaryGreen};
+    background: ${({ theme }) => theme.primaryBackground};
 `;
