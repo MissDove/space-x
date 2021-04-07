@@ -46,7 +46,6 @@ const Wrapper = styled.div`
 
 const GridItem = styled(Grid)`
     padding: 12px;
-    //background: ${({ theme }) => theme.lightGrey};
     border-radius: ${({ theme }) => theme.radius1};
 `;
 
