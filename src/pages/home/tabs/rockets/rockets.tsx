@@ -27,15 +27,16 @@ export const Rockets: React.FC<IRocketsProps> = ({ className }) => {
 
     return (
         <Wrapper className={className}>
-            <Grid container spacing={4} direction="row" justify="space-between" alignItems="baseline">
-                {listOfRockets.map((rocket: any, index: any) => (
+            {listOfRockets.map((rocket: any, index: any) => (
+                <Grid container spacing={4} direction="row" justify="space-between" alignItems="baseline">
                     <GridItem item key={index}>
-                        <Image src={rocket.flickr_images[0]} alt="Rocket" />
-                        <VerticalSpacing size={16} />
-                        <p>Name: {rocket.rocket_name}</p>
+                        <div>
+                            <VerticalSpacing size={16} />
+                            <p>Name: {rocket.rocket_name}</p>
+                        </div>
                     </GridItem>
-                ))}
-            </Grid>
+                </Grid>
+            ))}
         </Wrapper>
     );
 };
@@ -49,10 +50,13 @@ const GridItem = styled(Grid)`
     border-radius: ${({ theme }) => theme.radius1};
 `;
 
-const Image = styled.img`
-    padding: 0;
-    display: block;
-    width: 200px;
-    height: 200px;
-    border-radius: ${({ theme }) => theme.radius1};
-`;
+{
+    /*<Image src={rocket.flickr_images[0]} alt="Rocket" />*/
+}
+// const Image = styled.img`
+//     padding: 0;
+//     display: block;
+//     width: 200px;
+//     height: 200px;
+//     border-radius: ${({ theme }) => theme.radius1};
+// `;
