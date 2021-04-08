@@ -1,5 +1,6 @@
 import { createMuiTheme } from "@material-ui/core";
 
+//move this to a new folder `utils` and write tests for this function
 export const pxToInt = (pxValue: string): number => {
     if (pxValue.match(/\d+px/g)) {
         return parseInt(pxValue.replace("px", ""));
@@ -9,7 +10,11 @@ export const pxToInt = (pxValue: string): number => {
 };
 
 export const Theme = {
+    // explore different fonts
     fontFamily: "Helvetica, sans-serif",
+
+    // add spacing values and any other values for css properties
+    // that repeat themselves throughout the codebase
 
     // colours
     darkGrey: "#392D40",
