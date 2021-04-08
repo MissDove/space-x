@@ -15,14 +15,11 @@ export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
 
     useEffect(() => {
         const getRockets = async () => {
-            let response = await fetch(`https://api.spacexdata.com/v3/rockets`);
+            const response = await fetch(`https://api.spacexdata.com/v3/rockets`);
 
-            if (response.ok) {
-                let data = await response.json();
-                setListOfRockets(data);
-            } else {
-                console.log("HTTP-Error: " + response.status);
-            }
+            const rocketData = await response.json();
+
+            setListOfRockets(rocketData);
         };
         getRockets();
     }, []);
@@ -36,7 +33,9 @@ export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
                             <Content>
                                 <Title>{rocket.rocket_name}</Title>
                                 <VerticalSpacing size={16} />
-                                <SubHeading status={rocket.active}>{rocket.active ? "active" : "inactive"}</SubHeading>
+                                <SubHeading data-testid="rocket-status" status={rocket.active}>
+                                    {rocket.active ? "active" : "inactive"}
+                                </SubHeading>
                             </Content>
                         </ContentLink>
                     </GridItem>

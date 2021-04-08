@@ -25,14 +25,11 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
 
     useEffect(() => {
         const getRocket = async () => {
-            let response = await fetch(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
+            const response = await fetch(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
 
-            if (response.ok) {
-                let data = await response.json();
-                setRocket(data);
-            } else {
-                console.log("HTTP-Error: " + response.status);
-            }
+            const data = await response.json();
+
+            setRocket(data);
         };
         getRocket();
     }, [rocketID]);

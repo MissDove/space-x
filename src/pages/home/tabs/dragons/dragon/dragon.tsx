@@ -25,14 +25,11 @@ export const Dragon: React.FC<IDragonProps> = ({ className }) => {
 
     useEffect(() => {
         const getDragon = async () => {
-            let response = await fetch(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
+            const response = await fetch(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
 
-            if (response.ok) {
-                let data = await response.json();
-                setDragon(data);
-            } else {
-                console.log("HTTP-Error: " + response.status);
-            }
+            const data = await response.json();
+
+            setDragon(data);
         };
         getDragon();
     }, [dragonID]);

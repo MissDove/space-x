@@ -15,14 +15,11 @@ export const DragonsList: React.FC<IDragonsListProps> = ({ className }) => {
 
     useEffect(() => {
         const getDragons = async () => {
-            let response = await fetch(`https://api.spacexdata.com/v3/dragons`);
+            const response = await fetch(`https://api.spacexdata.com/v3/dragons`);
 
-            if (response.ok) {
-                let data = await response.json();
-                setListOfDragons(data);
-            } else {
-                console.log("HTTP-Error: " + response.status);
-            }
+            const dragonData = await response.json();
+
+            setListOfDragons(dragonData);
         };
         getDragons();
     }, []);
