@@ -39,6 +39,10 @@ export const Dragon: React.FC<IDragonProps> = ({ className }) => {
 
     const dragonData = [
         {
+            name: "type",
+            value: dragon?.type,
+        },
+        {
             name: "diameter",
             value: dragon?.diameter.meters,
             unit: "m",

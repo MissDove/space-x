@@ -39,6 +39,10 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
 
     const rocketData = [
         {
+            name: "type",
+            value: rocket?.rocket_type,
+        },
+        {
             name: "diameter",
             value: rocket?.diameter.meters,
             unit: "m",
