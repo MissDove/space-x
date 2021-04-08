@@ -15,79 +15,67 @@ import {
     StyledImageCarousel,
 } from "../../item-styles";
 
-export interface IRocketProps {
+export interface IDragonProps {
     className?: string;
 }
 
-export const Rocket: React.FC<IRocketProps> = ({ className }) => {
-    const { rocketID } = useParams<{ rocketID: string }>();
+export const Dragon: React.FC<IDragonProps> = ({ className }) => {
+    const { dragonID } = useParams<{ dragonID: string }>();
 
-    const [rocket, setRocket] = useState<any>();
+    const [dragon, setDragon] = useState<any>();
 
     useEffect(() => {
-        const getRocket = async () => {
+        const getDragon = async () => {
             try {
-                const response = await axios.get(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
+                const response = await axios.get(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
                 console.log(response.data);
-                setRocket(response.data);
+                setDragon(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
-        getRocket();
-    }, [rocketID]);
+        getDragon();
+    }, [dragonID]);
 
-    const rocketData = [
+    const dragonData = [
         {
             name: "diameter",
-            value: rocket?.diameter.meters,
+            value: dragon?.diameter.meters,
             unit: "m",
         },
         {
             name: "height",
-            value: rocket?.height.meters,
+            value: dragon?.height_w_trunk.meters,
             unit: "m",
         },
         {
             name: "mass",
-            value: rocket?.mass.kg,
+            value: dragon?.dry_mass_kg,
             unit: "kg",
         },
         {
-            name: "no of engines",
-            value: rocket?.engines.number,
-        },
-        {
-            name: "landing legs",
-            value: rocket?.landing_legs.number,
-        },
-        {
-            name: "landing legs material",
-            value: rocket?.landing_legs.material,
-        },
-        {
             name: "first flight",
-            value: rocket?.first_flight,
+            value: dragon?.first_flight,
         },
     ];
 
     return (
         <Wrapper className={className}>
             <NameWrapper>
-                <Name status={rocket?.active}>{rocket?.rocket_name}</Name>
+                <Name status={dragon?.active}>{dragon?.name}</Name>
             </NameWrapper>
             <VerticalSpacing size={48} />
             <CardsContainer>
                 <CardWrapper>
                     <VerticalSpacing size={16} />
-                    {rocket?.flickr_images && <StyledImageCarousel images={rocket?.flickr_images} />}
+                    {dragon?.flickr_images && <StyledImageCarousel images={dragon?.flickr_images} />}
                     <CardContent>
-                        <Description>{rocket?.description}</Description>
+                        <Description>{dragon?.description}</Description>
                     </CardContent>
                 </CardWrapper>
                 <CardWrapper>
                     <CardContent>
-                        {rocketData.map((detail, index) => (
+                        {dragonData.map((detail, index) => (
                             <div key={index}>
                                 <Detail>
                                     {detail.name}
@@ -99,12 +87,6 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
                                 <VerticalSpacing size={12} />
                             </div>
                         ))}
-                        <VerticalSpacing size={48} />
-                        <Detail>Country</Detail>
-                        <VerticalSpacing size={8} />
-                        <Detail>
-                            <span>{rocket?.country}</span>
-                        </Detail>
                     </CardContent>
                 </CardWrapper>
             </CardsContainer>
