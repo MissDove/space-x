@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+
 import { VerticalSpacing } from "components/shared-styles";
+import { ImageCarousel } from "components/image-carousel";
 
 export interface IRocketProps {
     className?: string;
@@ -34,7 +36,8 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
             <VerticalSpacing size={48} />
             <CardsContainer>
                 <CardWrapper>
-                    <Image src={rocket?.flickr_images[0]} alt="Rocket" />
+                    <VerticalSpacing size={16} />
+                    {rocket?.flickr_images && <StyledImageCarousel images={rocket?.flickr_images} />}
                     <CardContent>
                         <Description>{rocket?.description}</Description>
                     </CardContent>
@@ -111,6 +114,18 @@ const Name = styled.h3<{ status?: boolean }>`
     transform: rotate(12deg);
 `;
 
+const StyledImageCarousel = styled(ImageCarousel)`
+    .image-gallery-image {
+        max-height: unset;
+        height: 225px;
+    }
+
+    .image-gallery-svg {
+        height: 60px;
+        width: 30px;
+    }
+`;
+
 const CardsContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -124,14 +139,6 @@ const CardWrapper = styled.div`
     background: ${({ theme }) => theme.darkGrey};
     border-radius: ${({ theme }) => theme.radius2};
     box-shadow: 5px 5px 0 0 ${({ theme }) => theme.primaryGreen};
-`;
-
-const Image = styled.img`
-    padding: 0;
-    display: block;
-    width: 300px;
-    height: 300px;
-    border-radius: ${({ theme }) => `${theme.radius1} ${theme.radius1} 0 0`};
 `;
 
 const CardContent = styled.div`
