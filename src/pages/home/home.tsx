@@ -77,7 +77,7 @@ const Wrapper = styled.div`
 const Content = styled.div`
     background: ${({ theme }) => theme.darkGrey};
     width: 100%;
-    height: 100vh;
+    min-height: 700px;
     padding: 64px;
 `;
 

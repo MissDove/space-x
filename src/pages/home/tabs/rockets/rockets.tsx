@@ -80,19 +80,20 @@ const Content = styled.div`
     width: 100%;
     margin-bottom: 32px;
     background: ${({ theme }) => theme.darkGrey};
-    border-radius: ${({ theme }) => theme.radius1};
+    border-radius: ${({ theme }) => theme.radius2};
     padding: 24px 16px;
+    box-shadow: 5px 5px 0 0 ${({ theme }) => theme.primaryGreen};
 `;
 
 const Title = styled.p`
-    color: ${({ theme }) => theme.primaryBlue};
+    color: ${({ theme }) => theme.primaryRed};
     text-align: center;
     font-size: 32px;
     font-weight: 600;
 `;
 
 const DateLaunched = styled.p`
-    color: ${({ theme }) => theme.primaryRed};
+    color: ${({ theme }) => theme.primaryBlue};
     text-align: center;
     font-size: 20px;
     font-weight: 600;
