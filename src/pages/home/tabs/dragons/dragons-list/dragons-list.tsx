@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
-import axios from "axios";
 
 import { VerticalSpacing } from "components/shared-styles";
 import { Content, ContentLink, Grid, GridItem, SubHeading, Title } from "../../tab-styles";
@@ -15,22 +14,19 @@ export const DragonsList: React.FC<IDragonsListProps> = ({ className }) => {
     const [listOfDragons, setListOfDragons] = useState<any>([]);
 
     useEffect(() => {
-        const abortController = new AbortController();
-
-        return function cleanup() {
-            abortController.abort();
-        };
-
         const getDragons = async () => {
-            try {
-                const response = await axios.get(`https://api.spacexdata.com/v3/dragons`);
-                setListOfDragons(response.data);
-            } catch (error) {
-                console.error(error);
+            let response = await fetch(`https://api.spacexdata.com/v3/dragons`);
+
+            if (response.ok) {
+                let data = await response.json();
+                setListOfDragons(data);
+            } else {
+                console.log("HTTP-Error: " + response.status);
             }
         };
         getDragons();
     }, []);
+
     return (
         <div className={className}>
             <Grid container spacing={1}>

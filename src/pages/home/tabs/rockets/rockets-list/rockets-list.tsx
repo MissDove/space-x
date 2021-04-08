@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
-import axios from "axios";
 
 import { VerticalSpacing } from "components/shared-styles";
 import { Content, ContentLink, Grid, GridItem, SubHeading, Title } from "../../tab-styles";
@@ -15,22 +14,19 @@ export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
     const [listOfRockets, setListOfRockets] = useState<any>([]);
 
     useEffect(() => {
-        const abortController = new AbortController();
-
-        return function cleanup() {
-            abortController.abort();
-        };
-
         const getRockets = async () => {
-            try {
-                const response = await axios.get(`https://api.spacexdata.com/v3/rockets`);
-                setListOfRockets(response.data);
-            } catch (error) {
-                console.error(error);
+            let response = await fetch(`https://api.spacexdata.com/v3/rockets`);
+
+            if (response.ok) {
+                let data = await response.json();
+                setListOfRockets(data);
+            } else {
+                console.log("HTTP-Error: " + response.status);
             }
         };
         getRockets();
     }, []);
+
     return (
         <div className={className}>
             <Grid container spacing={1}>

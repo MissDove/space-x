@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import { VerticalSpacing } from "components/shared-styles";
 import {
@@ -26,11 +25,13 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
 
     useEffect(() => {
         const getRocket = async () => {
-            try {
-                const response = await axios.get(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
-                setRocket(response.data);
-            } catch (error) {
-                console.error(error);
+            let response = await fetch(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
+
+            if (response.ok) {
+                let data = await response.json();
+                setRocket(data);
+            } else {
+                console.log("HTTP-Error: " + response.status);
             }
         };
         getRocket();

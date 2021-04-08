@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import { VerticalSpacing } from "components/shared-styles";
 import {
@@ -26,11 +25,13 @@ export const Dragon: React.FC<IDragonProps> = ({ className }) => {
 
     useEffect(() => {
         const getDragon = async () => {
-            try {
-                const response = await axios.get(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
-                setDragon(response.data);
-            } catch (error) {
-                console.error(error);
+            let response = await fetch(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
+
+            if (response.ok) {
+                let data = await response.json();
+                setDragon(data);
+            } else {
+                console.log("HTTP-Error: " + response.status);
             }
         };
         getDragon();
