@@ -51,7 +51,7 @@ const LogoWrapper = styled.div`
     transform: rotate(-12deg);
 `;
 
-const LogoText = styled.p`
+const LogoText = styled.h1`
     font-size: 48px;
     font-weight: 700;
     color: ${({ theme }) => theme.darkGrey};

@@ -31,11 +31,21 @@ export const Home = () => {
                         <VerticalSpacing size={32} />
 
                         <ButtonLinksWrapper>
-                            <ButtonNavLink to={`${url}rockets`} exact={true} activeClassName="active">
+                            <ButtonNavLink
+                                data-testid="rockets-link"
+                                to={`${url}rockets`}
+                                exact={true}
+                                activeClassName="active"
+                            >
                                 <LinkText>Rockets</LinkText>
                             </ButtonNavLink>
 
-                            <ButtonNavLink to={`${url}dragons`} exact={true}>
+                            <ButtonNavLink
+                                data-testid="dragons-link"
+                                to={`${url}dragons`}
+                                exact={true}
+                                activeClassName="active"
+                            >
                                 <LinkText>Dragons</LinkText>
                             </ButtonNavLink>
                         </ButtonLinksWrapper>
@@ -134,7 +144,6 @@ const ButtonNavLink = styled(NavLink)`
     border: 5px solid ${({ theme }) => theme.primaryYellow};
     background: transparent;
     transform: rotate(-12deg);
-
     text-align: center;
     text-decoration: none;
     font-weight: 700;
