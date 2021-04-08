@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 
-import { NavbarRouter } from "components/navbar";
+import { Navbar } from "components/navbar";
 import { Dragons } from "./tabs/dragons";
 import { Rockets } from "./tabs/rockets";
 import { VerticalSpacing } from "components/shared-styles";
@@ -13,15 +13,15 @@ export const Home = () => {
 
     return (
         <Wrapper>
-            <NavbarRouter logo={{ url }} />
+            <Navbar logo={{ url }} />
 
             <Content>
                 <PageContentWrapper>
                     <LinksWrapper>
                         <div>
-                            {(pathname === "/rockets" || pathname === "/dragons") && (
+                            {(pathname.includes("rockets") || pathname.includes("dragons")) && (
                                 <HomeButton>
-                                    <StyledNavLink to={url} exact={true}>
+                                    <StyledNavLink data-testid="home-link" to={url} exact={true}>
                                         <Text>Return to SpaceX</Text>
                                     </StyledNavLink>
                                 </HomeButton>
@@ -31,11 +31,21 @@ export const Home = () => {
                         <VerticalSpacing size={32} />
 
                         <ButtonLinksWrapper>
-                            <ButtonNavLink to={`${url}rockets`} exact={true} activeClassName="active">
+                            <ButtonNavLink
+                                data-testid="rockets-link"
+                                to={`${url}rockets`}
+                                exact={true}
+                                activeClassName="active"
+                            >
                                 <LinkText>Rockets</LinkText>
                             </ButtonNavLink>
 
-                            <ButtonNavLink to={`${url}dragons`} exact={true}>
+                            <ButtonNavLink
+                                data-testid="dragons-link"
+                                to={`${url}dragons`}
+                                exact={true}
+                                activeClassName="active"
+                            >
                                 <LinkText>Dragons</LinkText>
                             </ButtonNavLink>
                         </ButtonLinksWrapper>
@@ -47,8 +57,7 @@ export const Home = () => {
                         {pathname === "/" && (
                             <Route path={path}>
                                 <HomeContent>
-                                    <HomeText>Welcome</HomeText>
-                                    <HomeText>Choose Rockets or Dragons to continue</HomeText>
+                                    <HomeText>Welcome to SpaceX</HomeText>
                                 </HomeContent>
                             </Route>
                         )}
@@ -77,7 +86,7 @@ const Wrapper = styled.div`
 const Content = styled.div`
     background: ${({ theme }) => theme.darkGrey};
     width: 100%;
-    height: 100vh;
+    min-height: 700px;
     padding: 64px;
 `;
 
@@ -118,17 +127,16 @@ const Text = styled.p`
 
 const LinkText = styled.p`
     transform: rotate(12deg);
-    margin-left: 30px;
 `;
 
 const ButtonLinksWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 `;
 
 const ButtonNavLink = styled(NavLink)`
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     height: 50px;
     width: 50px;
@@ -136,7 +144,6 @@ const ButtonNavLink = styled(NavLink)`
     border: 5px solid ${({ theme }) => theme.primaryYellow};
     background: transparent;
     transform: rotate(-12deg);
-
     text-align: center;
     text-decoration: none;
     font-weight: 700;
@@ -160,15 +167,14 @@ const HomeContent = styled.div`
 const HomeText = styled.h2`
     font-size: 32px;
     font-weight: 700;
-    line-height: 1.6;
     color: ${({ theme }) => theme.darkGrey};
 `;
 
 const TabContent = styled.div`
     margin-left: auto;
     margin-right: auto;
-    padding: 24px;
+    padding: 32px 32px 0;
     border: 5px solid ${({ theme }) => theme.primaryYellow};
     border-radius: ${({ theme }) => theme.radius2};
-    background: ${({ theme }) => theme.primaryGreen};
+    background: ${({ theme }) => theme.primaryBackground};
 `;

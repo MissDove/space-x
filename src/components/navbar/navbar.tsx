@@ -13,14 +13,14 @@ interface INavbarProps {
     logo: LinkInterface;
 }
 
-export const NavbarRouter = ({ className, logo }: INavbarProps) => {
+export const Navbar = ({ className, logo }: INavbarProps) => {
     return (
         <Wrapper className={className}>
             <PageWidth>
                 <Container>
-                    <StyledLink data-testid="navbar-router-logo" to={logo.url} title={logo.title} exact={true}>
+                    <StyledLink data-testid="navbar-logo-link" to={logo.url} title={logo.title} exact={true}>
                         <LogoWrapper>
-                            <Logo>SpaceX</Logo>
+                            <LogoText>SpaceX</LogoText>
                         </LogoWrapper>
                     </StyledLink>
                 </Container>
@@ -51,30 +51,9 @@ const LogoWrapper = styled.div`
     transform: rotate(-12deg);
 `;
 
-const Logo = styled.p`
+const LogoText = styled.h1`
     font-size: 48px;
     font-weight: 700;
     color: ${({ theme }) => theme.darkGrey};
     transform: rotate(12deg);
 `;
-
-// const Menu = styled.ul`
-//     margin-left: auto;
-//     display: flex;
-//     align-items: center;
-// `;
-//
-// const MenuItem = styled.li`
-//     margin-right: 24px;
-//
-//     :last-child {
-//         margin-right: 0;
-//     }
-// `;
-//
-// const MenuLink = styled.a<{ isActive?: boolean }>`
-//     font-size: 16px;
-//     font-weight: 700;
-//
-//     ${({ theme, isActive }) => isActive === true && `color: green; cursor: default`}
-// `;
