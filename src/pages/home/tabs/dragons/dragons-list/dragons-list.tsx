@@ -11,6 +11,7 @@ export interface IDragonsListProps {
 export const DragonsList: React.FC<IDragonsListProps> = ({ className }) => {
     const { url } = useRouteMatch();
 
+    // need to create interface for dragon object
     const [listOfDragons, setListOfDragons] = useState<any>([]);
 
     useEffect(() => {

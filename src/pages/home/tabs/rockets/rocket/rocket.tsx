@@ -21,6 +21,7 @@ export interface IRocketProps {
 export const Rocket: React.FC<IRocketProps> = ({ className }) => {
     const { rocketID } = useParams<{ rocketID: string }>();
 
+    // need to create interface for rocket object
     const [rocket, setRocket] = useState<any>();
 
     useEffect(() => {

@@ -11,6 +11,7 @@ export interface IRocketsListProps {
 export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
     const { url } = useRouteMatch();
 
+    // need to create interface for rocket object
     const [listOfRockets, setListOfRockets] = useState<any>([]);
 
     useEffect(() => {

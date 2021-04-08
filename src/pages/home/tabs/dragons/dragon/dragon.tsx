@@ -21,6 +21,7 @@ export interface IDragonProps {
 export const Dragon: React.FC<IDragonProps> = ({ className }) => {
     const { dragonID } = useParams<{ dragonID: string }>();
 
+    // need to create interface for dragon object
     const [dragon, setDragon] = useState<any>();
 
     useEffect(() => {
