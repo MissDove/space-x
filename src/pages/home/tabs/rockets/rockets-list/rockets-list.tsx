@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouteMatch } from "react-router-dom";
+import axios from "axios";
 
 import { VerticalSpacing } from "components/shared-styles";
 import { Content, ContentLink, Grid, GridItem, SubHeading, Title } from "../../tab-styles";
@@ -18,8 +18,6 @@ export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
         const getRockets = async () => {
             try {
                 const response = await axios.get(`https://api.spacexdata.com/v3/rockets`);
-                // console.log(response);
-                console.log(response.data);
                 setListOfRockets(response.data);
             } catch (error) {
                 console.error(error);

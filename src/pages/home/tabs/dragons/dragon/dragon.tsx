@@ -28,7 +28,6 @@ export const Dragon: React.FC<IDragonProps> = ({ className }) => {
         const getDragon = async () => {
             try {
                 const response = await axios.get(`https://api.spacexdata.com/v3/dragons/${dragonID}`);
-                console.log(response.data);
                 setDragon(response.data);
             } catch (error) {
                 console.error(error);

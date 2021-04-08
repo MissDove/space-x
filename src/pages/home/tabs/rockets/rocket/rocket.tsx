@@ -28,7 +28,6 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
         const getRocket = async () => {
             try {
                 const response = await axios.get(`https://api.spacexdata.com/v3/rockets/${rocketID}`);
-                console.log(response.data);
                 setRocket(response.data);
             } catch (error) {
                 console.error(error);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 
-import { NavbarRouter } from "components/navbar";
+import { Navbar } from "components/navbar";
 import { Dragons } from "./tabs/dragons";
 import { Rockets } from "./tabs/rockets";
 import { VerticalSpacing } from "components/shared-styles";
@@ -13,7 +13,7 @@ export const Home = () => {
 
     return (
         <Wrapper>
-            <NavbarRouter logo={{ url }} />
+            <Navbar logo={{ url }} />
 
             <Content>
                 <PageContentWrapper>
