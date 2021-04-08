@@ -15,6 +15,12 @@ export const RocketsList: React.FC<IRocketsListProps> = ({ className }) => {
     const [listOfRockets, setListOfRockets] = useState<any>([]);
 
     useEffect(() => {
+        const abortController = new AbortController();
+
+        return function cleanup() {
+            abortController.abort();
+        };
+
         const getRockets = async () => {
             try {
                 const response = await axios.get(`https://api.spacexdata.com/v3/rockets`);

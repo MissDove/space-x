@@ -21,7 +21,7 @@ export const Home = () => {
                         <div>
                             {(pathname.includes("rockets") || pathname.includes("dragons")) && (
                                 <HomeButton>
-                                    <StyledNavLink to={url} exact={true}>
+                                    <StyledNavLink data-testid="home-link" to={url} exact={true}>
                                         <Text>Return to SpaceX</Text>
                                     </StyledNavLink>
                                 </HomeButton>

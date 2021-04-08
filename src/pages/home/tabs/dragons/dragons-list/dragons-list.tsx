@@ -15,6 +15,12 @@ export const DragonsList: React.FC<IDragonsListProps> = ({ className }) => {
     const [listOfDragons, setListOfDragons] = useState<any>([]);
 
     useEffect(() => {
+        const abortController = new AbortController();
+
+        return function cleanup() {
+            abortController.abort();
+        };
+
         const getDragons = async () => {
             try {
                 const response = await axios.get(`https://api.spacexdata.com/v3/dragons`);

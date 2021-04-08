@@ -39,35 +39,73 @@ describe("<Home />", () => {
         expect(getByText(/welcome to spacex/i, { selector: "h2" })).toBeVisible();
     });
 
-    it("should take user to `rockets` tab after clicking on `rockets` link", () => {
-        const history = createBrowserHistory();
-        history.push("/");
+    describe("Rockets tab", () => {
+        it("should take user to `rockets` tab after clicking on `rockets` link", () => {
+            const history = createBrowserHistory();
+            history.push("/");
 
-        const { getByText } = render(
-            <Router history={history}>
-                <Home />
-            </Router>
-        );
+            const { getByText } = render(
+                <Router history={history}>
+                    <Home />
+                </Router>
+            );
 
-        const rocketsLink = getByText(/rockets/i);
-        fireEvent.click(rocketsLink);
+            const rocketsLink = getByText(/rockets/i);
+            fireEvent.click(rocketsLink);
 
-        expect(history.location.pathname).toBe("/rockets");
+            expect(history.location.pathname).toBe("/rockets");
+        });
+
+        it("should render `return to spacex` link if the user is on `rockets` tab", () => {
+            const history = createBrowserHistory();
+            history.push("/");
+
+            const { getByTestId, getByText } = render(
+                <Router history={history}>
+                    <Home />
+                </Router>
+            );
+
+            const rocketsLink = getByText(/rockets/i);
+            fireEvent.click(rocketsLink);
+
+            expect(getByTestId(/home-link/i)).toBeInTheDocument();
+            expect(getByText(/return to spacex/i)).toBeVisible();
+        });
     });
 
-    it("should take user to `dragons` tab after clicking on `dragons` link", () => {
-        const history = createBrowserHistory();
-        history.push("/");
+    describe("Dragons tab", () => {
+        it("should take user to `dragons` tab after clicking on `dragons` link", () => {
+            const history = createBrowserHistory();
+            history.push("/");
 
-        const { getByText } = render(
-            <Router history={history}>
-                <Home />
-            </Router>
-        );
+            const { getByText } = render(
+                <Router history={history}>
+                    <Home />
+                </Router>
+            );
 
-        const dragonsLink = getByText(/dragons/i);
-        fireEvent.click(dragonsLink);
+            const dragonsLink = getByText(/dragons/i);
+            fireEvent.click(dragonsLink);
 
-        expect(history.location.pathname).toBe("/dragons");
+            expect(history.location.pathname).toBe("/dragons");
+        });
+
+        it("should render `return to spacex` link if the user is on `dragons` tab", () => {
+            const history = createBrowserHistory();
+            history.push("/");
+
+            const { getByTestId, getByText } = render(
+                <Router history={history}>
+                    <Home />
+                </Router>
+            );
+
+            const dragonsLink = getByText(/dragons/i);
+            fireEvent.click(dragonsLink);
+
+            expect(getByTestId(/home-link/i)).toBeInTheDocument();
+            expect(getByText(/return to spacex/i)).toBeVisible();
+        });
     });
 });
