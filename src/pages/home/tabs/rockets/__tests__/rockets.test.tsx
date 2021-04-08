@@ -4,7 +4,7 @@ import { StaticRouter } from "react-router-dom";
 import { Rockets } from "../rockets";
 
 describe("<Rockets />", () => {
-    it("should render `return to spacex` link", () => {
+    it("should render a list of rockets ", () => {
         const {} = render(
             <StaticRouter location={`/rockets`}>
                 <Rockets />
