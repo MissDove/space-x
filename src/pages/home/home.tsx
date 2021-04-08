@@ -47,8 +47,7 @@ export const Home = () => {
                         {pathname === "/" && (
                             <Route path={path}>
                                 <HomeContent>
-                                    <HomeText>Welcome</HomeText>
-                                    <HomeText>Choose Rockets or Dragons to continue</HomeText>
+                                    <HomeText>Welcome to SpaceX</HomeText>
                                 </HomeContent>
                             </Route>
                         )}
@@ -118,17 +117,16 @@ const Text = styled.p`
 
 const LinkText = styled.p`
     transform: rotate(12deg);
-    margin-left: 30px;
 `;
 
 const ButtonLinksWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 `;
 
 const ButtonNavLink = styled(NavLink)`
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     height: 50px;
     width: 50px;
@@ -160,7 +158,6 @@ const HomeContent = styled.div`
 const HomeText = styled.h2`
     font-size: 32px;
     font-weight: 700;
-    line-height: 1.6;
     color: ${({ theme }) => theme.darkGrey};
 `;
 

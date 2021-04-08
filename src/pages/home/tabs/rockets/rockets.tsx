@@ -41,9 +41,9 @@ export const Rockets: React.FC<IRocketsProps> = ({ className }) => {
                                     <Content>
                                         <Title>{rocket.rocket_name}</Title>
                                         <VerticalSpacing size={16} />
-                                        <DateLaunched>First launched</DateLaunched>
-                                        <VerticalSpacing size={8} />
-                                        <DateLaunched>{rocket.first_flight}</DateLaunched>
+                                        <SubHeading status={rocket.active}>
+                                            {rocket.active ? "active" : "inactive"}
+                                        </SubHeading>
                                     </Content>
                                 </ContentLink>
                             </GridItem>
@@ -86,15 +86,15 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-    color: ${({ theme }) => theme.primaryRed};
+    color: ${({ theme }) => theme.primaryBackground};
     text-align: center;
     font-size: 32px;
     font-weight: 600;
 `;
 
-const DateLaunched = styled.p`
-    color: ${({ theme }) => theme.primaryBlue};
+const SubHeading = styled.p<{ status?: boolean }>`
+    color: ${({ theme, status }) => (status ? `${theme.primaryBlue}` : `${theme.primaryRed}`)};
     text-align: center;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
 `;

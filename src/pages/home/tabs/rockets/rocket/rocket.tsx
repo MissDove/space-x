@@ -29,18 +29,61 @@ export const Rocket: React.FC<IRocketProps> = ({ className }) => {
     return (
         <Wrapper className={className}>
             <NameWrapper>
-                <Name>{rocket?.rocket_name}</Name>
+                <Name status={rocket?.active}>{rocket?.rocket_name}</Name>
             </NameWrapper>
-            <VerticalSpacing size={24} />
-            <CardWrapper>
-                <Image src={rocket?.flickr_images[0]} alt="Rocket" />
-                <VerticalSpacing size={24} />
-                <CardContent>
-                    <p>{rocket?.description}</p>
-                    <p>{rocket?.diameter.meters}</p>
-                    <p>{rocket?.height.meters}</p>
-                </CardContent>
-            </CardWrapper>
+            <VerticalSpacing size={48} />
+            <CardsContainer>
+                <CardWrapper>
+                    <Image src={rocket?.flickr_images[0]} alt="Rocket" />
+                    <CardContent>
+                        <Description>{rocket?.description}</Description>
+                    </CardContent>
+                </CardWrapper>
+                <CardWrapper>
+                    <CardContent>
+                        <Detail>
+                            Diameter<span>{rocket?.diameter.meters} m</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            Height<span>{rocket?.height.meters} m</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            Mass<span>{rocket?.mass.kg} kg</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            No of engines<span>{rocket?.engines.number}</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            Landing legs<span>{rocket?.landing_legs.number}</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            Landing legs material<span>{rocket?.landing_legs.material}</span>
+                        </Detail>
+                        <VerticalSpacing size={12} />
+
+                        <Detail>
+                            First flight<span>{rocket?.first_flight}</span>
+                        </Detail>
+
+                        <VerticalSpacing size={48} />
+                        <Detail>Country</Detail>
+                        <VerticalSpacing size={8} />
+                        <Detail>
+                            <span>{rocket?.country}</span>
+                        </Detail>
+                    </CardContent>
+                </CardWrapper>
+            </CardsContainer>
         </Wrapper>
     );
 };
@@ -60,12 +103,17 @@ const NameWrapper = styled.div`
     vertical-align: center; ;
 `;
 
-const Name = styled.h3`
+const Name = styled.h3<{ status?: boolean }>`
     text-align: center;
     font-size: 24px;
     font-weight: 700;
-    color: ${({ theme }) => theme.primaryRed};
+    color: ${({ theme, status }) => (status ? `${theme.primaryBlue}` : `${theme.primaryRed}`)};
     transform: rotate(12deg);
+`;
+
+const CardsContainer = styled.div`
+    display: flex;
+    justify-content: center;
 `;
 
 const CardWrapper = styled.div`
@@ -86,4 +134,26 @@ const Image = styled.img`
     border-radius: ${({ theme }) => `${theme.radius1} ${theme.radius1} 0 0`};
 `;
 
-const CardContent = styled.div``;
+const CardContent = styled.div`
+    padding: 16px;
+`;
+
+const Description = styled.p`
+    font-size: 16px;
+    line-height: 1.4;
+`;
+
+const Detail = styled.p`
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    border-bottom: 1px solid ${({ theme }) => theme.primaryGreen};
+    text-transform: uppercase;
+
+    span {
+        text-transform: none;
+        font-weight: 700;
+        font-size: 16px;
+    }
+`;
