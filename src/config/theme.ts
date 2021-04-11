@@ -11,7 +11,10 @@ export const pxToInt = (pxValue: string): number => {
 
 export const Theme = {
     // explore different fonts
-    fontFamily: "Helvetica, sans-serif",
+    // fontFamily: "Helvetica, sans-serif",
+
+    fontFamily:
+        "BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
 
     // add spacing values and any other values for css properties
     // that repeat themselves throughout the codebase
