@@ -23,5 +23,6 @@ This will run all the test suites in the app.
 # UX/UI
 
 The inspiration for UX and theme colours for this app came from this image:
-
+<a href="https://dribbble.com/shots/12090041-Planet-Explorer" target="_blank" rel="noreferrer noopener">
 <img src="src/components/media/inspiration-image.png" height="350" alt="Inspiration photo">
+<a/>
