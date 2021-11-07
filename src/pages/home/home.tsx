@@ -4,6 +4,8 @@ import { NavLink, Route, Switch, useLocation, useRouteMatch } from "react-router
 import { Navbar } from "components/navbar";
 import { Dragons } from "./tabs/dragons";
 import { Rockets } from "./tabs/rockets";
+import { Ships } from "./tabs/ships";
+
 import { VerticalSpacing } from "components/shared-styles";
 
 export const Home = () => {
@@ -19,12 +21,19 @@ export const Home = () => {
                 <PageContentWrapper>
                     <LinksWrapper>
                         <div>
-                            {(pathname.includes("rockets") || pathname.includes("dragons")) && (
+                            {(pathname.includes("rockets") ||
+                                pathname.includes("dragons") ||
+                                pathname.includes("ships")) && (
                                 <HomeButton>
                                     <StyledNavLink data-testid="home-link" to={url} exact={true}>
                                         <Text>Return to SpaceX</Text>
                                     </StyledNavLink>
                                 </HomeButton>
+                            )}
+                            {pathname === "/" && (
+                                <HomeContent>
+                                    <HomeText>Welcome to SpaceX</HomeText>
+                                </HomeContent>
                             )}
                         </div>
 
@@ -48,19 +57,21 @@ export const Home = () => {
                             >
                                 <LinkText>Dragons</LinkText>
                             </ButtonNavLink>
+
+                            <ButtonNavLink
+                                data-testid="ships-link"
+                                to={`${url}ships`}
+                                exact={true}
+                                activeClassName="active"
+                            >
+                                <LinkText>Ships</LinkText>
+                            </ButtonNavLink>
                         </ButtonLinksWrapper>
                     </LinksWrapper>
 
                     <VerticalSpacing size={32} />
 
                     <Switch>
-                        {pathname === "/" && (
-                            <Route path={path}>
-                                <HomeContent>
-                                    <HomeText>Welcome to SpaceX</HomeText>
-                                </HomeContent>
-                            </Route>
-                        )}
                         <Route path={`${path}rockets`}>
                             <TabContent>
                                 <Rockets />
@@ -69,6 +80,11 @@ export const Home = () => {
                         <Route path={`${path}dragons`}>
                             <TabContent>
                                 <Dragons />
+                            </TabContent>
+                        </Route>
+                        <Route path={`${path}ships`}>
+                            <TabContent>
+                                <Ships />
                             </TabContent>
                         </Route>
                     </Switch>
@@ -99,7 +115,6 @@ const PageContentWrapper = styled.div`
 `;
 
 const LinksWrapper = styled.div`
-    max-width: 230px;
     margin-left: auto;
     margin-right: auto;
 `;
