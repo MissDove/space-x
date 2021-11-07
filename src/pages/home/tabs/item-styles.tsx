@@ -25,6 +25,10 @@ export const Name = styled.h3<{ status?: boolean }>`
     transform: rotate(12deg);
 `;
 
+export const StyledImage = styled.img`
+    max-width: 300px;
+`;
+
 export const StyledImageCarousel = styled(ImageCarousel)`
     .image-gallery-image {
         max-height: unset;

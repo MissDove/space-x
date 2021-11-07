@@ -11,7 +11,8 @@ import {
     Description,
     Name,
     NameWrapper,
-    StyledImageCarousel,
+    StyledImage,
+    // StyledImageCarousel,
 } from "../../item-styles";
 
 export interface IShipProps {
@@ -37,55 +38,48 @@ export const Ship: React.FC<IShipProps> = ({ className }) => {
 
     const shipData = [
         {
-            name: "type",
-            value: ship?.type,
-        },
-        {
-            name: "diameter",
-            value: ship?.diameter.meters,
-            unit: "m",
-        },
-        {
-            name: "height",
-            value: ship?.height_w_trunk.meters,
-            unit: "m",
+            name: "ship_type",
+            value: ship?.ship_type,
         },
         {
             name: "mass",
-            value: ship?.dry_mass_kg,
+            value: ship?.weight_kg,
             unit: "kg",
         },
         {
-            name: "first flight",
-            value: ship?.first_flight,
+            name: "year built",
+            value: ship?.year_built,
         },
     ];
 
     return (
         <Wrapper className={className}>
             <NameWrapper>
-                <Name status={ship?.active}>{ship?.name}</Name>
+                <Name status={ship?.active}>{ship?.ship_name}</Name>
             </NameWrapper>
             <VerticalSpacing size={48} />
             <CardsContainer>
                 <CardWrapper>
                     <VerticalSpacing size={16} />
-                    {ship?.flickr_images && <StyledImageCarousel images={ship?.flickr_images} />}
+                    {/*{ship?.flickr_images && <StyledImageCarousel images={ship?.flickr_images} />}*/}
+                    <StyledImage src={ship?.image ? ship?.image : ""} />
                     <CardContent>
-                        <Description>{ship?.description}</Description>
+                        <Description>Just some ship being shown here</Description>
                     </CardContent>
                 </CardWrapper>
                 <CardWrapper>
                     <CardContent>
                         {shipData.map((detail, index) => (
                             <div key={index}>
-                                <Detail>
-                                    {detail.name}
-                                    <span>
-                                        {detail.value}
-                                        {detail.unit && detail.unit}
-                                    </span>
-                                </Detail>
+                                {detail.value !== null && (
+                                    <Detail>
+                                        {detail.name}
+                                        <span>
+                                            {detail.value}
+                                            {detail.unit && detail.unit}
+                                        </span>
+                                    </Detail>
+                                )}
                                 <VerticalSpacing size={12} />
                             </div>
                         ))}

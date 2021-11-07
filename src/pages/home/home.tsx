@@ -21,6 +21,14 @@ export const Home = () => {
                 <PageContentWrapper>
                     <LinksWrapper>
                         <div>
+                            {pathname === "/" && (
+                                <HomeContent>
+                                    <HomeText>Welcome to SpaceX</HomeText>
+                                    <VerticalSpacing size={12} />
+                                    <SubText>Select an option below to continue</SubText>
+                                </HomeContent>
+                            )}
+
                             {(pathname.includes("rockets") ||
                                 pathname.includes("dragons") ||
                                 pathname.includes("ships")) && (
@@ -29,11 +37,6 @@ export const Home = () => {
                                         <Text>Return to SpaceX</Text>
                                     </StyledNavLink>
                                 </HomeButton>
-                            )}
-                            {pathname === "/" && (
-                                <HomeContent>
-                                    <HomeText>Welcome to SpaceX</HomeText>
-                                </HomeContent>
                             )}
                         </div>
 
@@ -183,6 +186,12 @@ const HomeText = styled.h2`
     font-size: 32px;
     font-weight: 700;
     color: ${({ theme }) => theme.darkGrey};
+`;
+
+const SubText = styled.p`
+    font-size: 16px;
+    font-weight: 700;
+    color: ${({ theme }) => theme.primaryRed};
 `;
 
 const TabContent = styled.div`

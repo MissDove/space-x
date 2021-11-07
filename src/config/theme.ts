@@ -30,6 +30,8 @@ export const Theme = {
 
     primaryYellow: "#F6D586",
 
+    primaryDarkPink: "#DD22DD",
+
     // border radius
     radius1: "4px",
     radius2: "16px",

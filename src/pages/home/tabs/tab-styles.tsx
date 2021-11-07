@@ -21,7 +21,12 @@ export const ContentLink = styled(Link)`
 `;
 
 export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
     width: 100%;
+    min-height: 200px;
     margin-bottom: 32px;
     background: ${({ theme }) => theme.darkGrey};
     border-radius: ${({ theme }) => theme.radius2};

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 
-import { VerticalSpacing } from "components/shared-styles";
+// import { VerticalSpacing } from "components/shared-styles";
 import { Content, ContentLink, Grid, GridItem, SubHeading, Title } from "../../tab-styles";
 
 export interface IShipsListProps {
@@ -30,10 +30,9 @@ export const ShipsList: React.FC<IShipsListProps> = ({ className }) => {
             <Grid container spacing={1}>
                 {listOfShips.map((ship: any, index: any) => (
                     <GridItem item md={6} lg={3} xl={3} key={`list-${index}`}>
-                        <ContentLink to={`${url}/${ship.id}`}>
+                        <ContentLink to={`${url}/${ship.ship_id}`}>
                             <Content>
-                                <Title>{ship.name}</Title>
-                                <VerticalSpacing size={16} />
+                                <Title>{ship.ship_name}</Title>
                                 <SubHeading status={ship.active}>{ship.active ? "active" : "inactive"}</SubHeading>
                             </Content>
                         </ContentLink>
